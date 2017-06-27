@@ -1,0 +1,63 @@
+/* 	Couleur Bouton Condorcet	: #00868A 
+	Couleur Texte Bouton 		: #FFFFFF
+	Couleur Ecriture PlaceHolder: #878787
+*/
+html, body, #page {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+
+input[type=submit] {
+	height: auto;
+	width: 99%;
+	margin-top: 1%;
+	margin-left: 1%;
+	background-color: #00868A;
+	color: #FFFFFF;
+	border-color: #878787;
+	border: solid 1px;
+	border-radius: 10px;
+	float: left;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #FFFFFF;
+	color: #00868A;
+}
+
+input[type=text], input[type=password] {
+	height: auto;
+	width: 100%;
+	margin-top: 1%;
+	border-radius: 6px;
+	border-color: #00868A;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+#menu {
+	width: 15%;
+	height: 100%;
+	float: left;
+}
+
+#wrapper {
+	width: 84%;
+	height: 100%;
+	float: right;
+	background-image: url("../image/stage.jpg");
+}
+
+#titre {
+	width: 25%;
+	height: 8%;
+	margin-left: 45%;
+	color: #00868A;
+}

@@ -1,0 +1,16 @@
+#tab {
+	width: 50%;
+	height: 30%;
+	border-radius: 10px;
+	background-color: #80ffff;
+	margin-left: 25%;
+	float: top;
+	position: relative;
+	margin-top: 15%;
+	margin-left: 33%;
+}
+
+table {
+	width: 20%;
+	height: 25%;
+}

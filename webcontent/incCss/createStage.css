@@ -1,0 +1,48 @@
+/* Général ------------------------------------------------------------------------------------- */
+#formulaire {
+	width: 50%;
+	height: 80%;
+	border-radius: 10px;
+	background-color: #ffffff;
+	margin-left: 25%;
+	float: top;
+	position: relative;
+	margin-top: 10%;
+	margin-left: 33%;
+}
+
+/* Forms --------------------------------------------------------------------------------------- */
+input[type=submit] {
+	height: auto;
+	width: 99%;
+	margin-top: 1%;
+	margin-left: 1%;
+	background-color: #00868A;
+	color: #FFFFFF;
+	border-color: #878787;
+	border: solid 1px;
+	border-radius: 10px;
+	float: left;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #FFFFFF;
+	color: #00868A;
+}
+
+input[type=text], input[type=password] {
+	height: auto;
+	width: 100%;
+	margin-top: 1%;
+	border-radius: 6px;
+	border-color: #00868A;
+}
+
+legend, p {
+	color: #0080ff;
+}
+
+.erreur {
+	color: #900;
+}
