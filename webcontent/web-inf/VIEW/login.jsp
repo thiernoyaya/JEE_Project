@@ -22,7 +22,7 @@
 		<form method="GET" action="acceuille">
 			<fieldset>
 				<legend>Connexion</legend>
-				<p>veuillez saisir vos informations d'authentification</p>
+				<p>Please enter your credentials</p>
 				<input id="txt_usn" name="txt_usn" type="text"
 					placeholder="Nom d'utilisateur" /> <input id="txt_pwd"
 					name="txt_pwd" type="password" placeholder="Mot de passe" /> <span

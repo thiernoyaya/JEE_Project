@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import PojoBean.SchoolMember;
+import Models.SchoolMemberModel;
 
 /**
  * Servlet implementation class ServeltInfoStudent_Prof
@@ -35,11 +35,11 @@ public class ServeltInfoStudent_Prof extends HttpServlet {
 		
 		try {
 			// pour les superviseur
-			Set<SchoolMember> listOfSpv = SchoolMember.listOfSchoolMember(true);
+			Set<SchoolMemberModel> listOfSpv = SchoolMemberModel.listOfSchoolMember(true);
 			request.setAttribute("listSpv", listOfSpv);
 			
 			//pour la coordinatrice
-			Set<SchoolMember> listOfCoord = SchoolMember.listOfSchoolMember(false);
+			Set<SchoolMemberModel> listOfCoord = SchoolMemberModel.listOfSchoolMember(false);
 			request.setAttribute("listCoord", listOfCoord);
 			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/InfoStudent&ProfSuperviseur.jsp").forward(request, response);			

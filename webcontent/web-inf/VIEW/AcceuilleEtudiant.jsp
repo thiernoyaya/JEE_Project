@@ -28,7 +28,7 @@
 		</h2>
 		<p>Ceci est une plateforme de gestion des stages. elle a pour
 			objectif de faciliter la communication entre les différents acteurs
-			impliquer dans le processus des stages. d'autre part elle met aussi à
+			impliqués dans le processus des stages. d'autre part elle met aussi à
 			la disposition des étudiants une liste d'entreprise dont ils
 			pourraient solliciter un stage. Avec cette outil, l'étudiant pourra
 			directement saisir les informations de son stage, son professeur

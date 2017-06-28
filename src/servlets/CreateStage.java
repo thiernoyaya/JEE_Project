@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import PojoBean.SchoolMember;
-import PojoBean.SchoolStudent;
+import Models.SchoolMemberModel;
+import Models.SchoolStudentModel;
 
 /**
  * Servlet implementation class CreateStage
@@ -39,7 +39,7 @@ public class CreateStage extends HttpServlet {
 		try {
 			// recuperation du user par le contexte de l'application
 			 ServletContext sc = getServletContext();
-			 SchoolStudent  user = (SchoolStudent) sc.getAttribute("UserStuent");		 
+			 SchoolStudentModel  user = (SchoolStudentModel) sc.getAttribute("UserStuent");		 
 			
 			  // recupperation des paramètres 
 			 String email  = request.getParameter("email");
@@ -53,8 +53,8 @@ public class CreateStage extends HttpServlet {
 			
 			request.setAttribute("spv", coord);
 			
-			SchoolMember smspv = SchoolMember.find(spv);
-			SchoolMember smCord = SchoolMember.find(coord);
+			SchoolMemberModel smspv = SchoolMemberModel.find(spv);
+			SchoolMemberModel smCord = SchoolMemberModel.find(coord);
 			
 			
 			//à traver nos setters on place des éléments dans notre objet
@@ -67,7 +67,7 @@ public class CreateStage extends HttpServlet {
 			  user.setSupervisor(smspv);
 			  user.setTel(tel);
 	         
-			 SchoolStudent.create(user);	    
+			 SchoolStudentModel.create(user);	    
 
 			this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/createStage.jsp").forward(request, response);
 			

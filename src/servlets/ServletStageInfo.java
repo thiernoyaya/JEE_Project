@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import PojoBean.SchoolStudent;
-import PojoBean.Stage;
+import Models.SchoolStudentModel;
+import Models.StageModel;
 
 /**
  * Servlet implementation class ServletStageInfo
@@ -43,7 +43,7 @@ public class ServletStageInfo extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// recuperation du user par le contexte de l'application
 		 ServletContext sc = getServletContext();
-		 SchoolStudent  user = (SchoolStudent) sc.getAttribute("UserStuent");	
+		 SchoolStudentModel  user = (SchoolStudentModel) sc.getAttribute("UserStuent");	
 		 
 		 String entname = request.getParameter("entname");
 		 String entspvname = request.getParameter("entspvname");
@@ -66,9 +66,9 @@ public class ServletStageInfo extends HttpServlet {
 			Date datefin = new Date(26/05/2016);
 			
 			// creation de l'objet stage
-			Stage stage = new Stage(user, entname, entspvname,entspvmail, entspvtel, entcountry, entzipcode, entcity, entstreet, entstreetnb, datedeb, datefin,tfetheme );
+			StageModel stage = new StageModel(user, entname, entspvname,entspvmail, entspvtel, entcountry, entzipcode, entcity, entstreet, entstreetnb, datedeb, datefin,tfetheme );
 			
-			Stage.createStage(stage);
+			StageModel.createStage(stage);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/validationInfoStage.jsp").forward(request, response);		
 			
 		} 

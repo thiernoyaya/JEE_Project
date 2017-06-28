@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import PojoBean.SchoolMember;
-import PojoBean.SchoolStudent;
-import PojoBean.Stage;
+import Models.SchoolMemberModel;
+import Models.SchoolStudentModel;
+import Models.StageModel;
 
 /**
  * Servlet implementation class ServeletDisplayStage
@@ -35,20 +35,20 @@ public class ServeletDisplayStage extends HttpServlet {
 		 try{
 			 // récuperation du contexte afin de savoir qui se connecte pour afficher la page coorespondante
 			 ServletContext sc = getServletContext();		 
-			 SchoolMember  obj = (SchoolMember) sc.getAttribute("UserMember");
+			 SchoolMemberModel  obj = (SchoolMemberModel) sc.getAttribute("UserMember");
 			 
 			 // recuperation du paramètre 
 			 String studentName = request.getParameter("createStage");
 			 request.setAttribute("etudiant", studentName);
 			 
 			 //appel de la fonction pour afficher les infos de stage de l'étudiant via un objet étudiant
-			 SchoolStudent ss = SchoolStudent.student(studentName);
-			 Stage stage = ss.TrainingOfStudent(ss);
+			 SchoolStudentModel ss = SchoolStudentModel.student(studentName);
+			 StageModel stage = ss.TrainingOfStudent(ss);
 			 request.setAttribute("stage",stage);
 			 
 			 if(obj != null){ 
 				try{ 
-					SchoolMember sm = (SchoolMember)obj;					
+					SchoolMemberModel sm = (SchoolMemberModel)obj;					
 					if(!sm.getFlagCoordinator()){
 						//pour le superviseur
 						this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/affichageDesInfoStage.jsp").forward(request, response);	
@@ -68,10 +68,10 @@ public class ServeletDisplayStage extends HttpServlet {
 		 }
 		 catch(Exception ex){
 			 ServletContext ss = getServletContext();
-			 SchoolStudent  user = (SchoolStudent) ss.getAttribute("UserStuent");
+			 SchoolStudentModel  user = (SchoolStudentModel) ss.getAttribute("UserStuent");
 			try {
-				SchoolStudent ssofStudent = SchoolStudent.student(user.getUsn());
-				Stage stge  = ssofStudent.TrainingOfStudent(ssofStudent);
+				SchoolStudentModel ssofStudent = SchoolStudentModel.student(user.getUsn());
+				StageModel stge  = ssofStudent.TrainingOfStudent(ssofStudent);
 				request.setAttribute("stage",stge);
 				//  appel à la page de l'étudiant pour afficher ses propres infos de stage
 				this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/affichageDesInfoStageParStudent.jsp").forward(request, response);	

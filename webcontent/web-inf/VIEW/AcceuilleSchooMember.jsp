@@ -14,7 +14,7 @@
 			Cours				: SGBD (PL/SQL) - JEE
 			Maitre Assistant	: Mme Copin - Mme Vandevorst
 			Languages			: HTML5 / CSS3 / JEE
-			Date Creation		: 02 Janvier 2017
+			Date Creation		: 02 Juillet 2017
             !!! CE FICHIER EST UN EXEMPLE POUR LES 3 FENETRES (ETUDIANT / SUPERVISEUR / COORDINATEUR) !!!
 		-->
 <link rel="stylesheet" type="text/css"

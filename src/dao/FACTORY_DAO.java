@@ -3,12 +3,7 @@ package DAO;
 
 import java.sql.Connection;
 
-/*import PojoBean.SchoolCoordinator;
-import PojoBean.SchoolStudent;
-import PojoBean.StageHours;
-import PojoBean.User;
-import PojoBean.Stage;*/
-import PojoBean.*;
+import Models.*;
 
 public class FACTORY_DAO extends  AbstractDAOFactory {
 
@@ -20,7 +15,7 @@ public class FACTORY_DAO extends  AbstractDAOFactory {
 	}*/
 
 	@Override
-	public DAO_JEE<SchoolMember> getDAO_SchoolMember() throws Exception {
+	public DAO_JEE<SchoolMemberModel> getDAO_SchoolMember() throws Exception {
 		try {
 			conn = Driver_DBOracle.getInstance();
 			return new DAO_SchoolMember(conn);
@@ -35,7 +30,7 @@ public class FACTORY_DAO extends  AbstractDAOFactory {
 	}*/
 
 	@Override
-	public DAO_JEE<SchoolStudent> getDAO_SchoolStudent() throws Exception {
+	public DAO_JEE<SchoolStudentModel> getDAO_SchoolStudent() throws Exception {
 		try {
 			conn = Driver_DBOracle.getInstance();
 			return new DAO_SchoolStudent(conn);
@@ -45,7 +40,7 @@ public class FACTORY_DAO extends  AbstractDAOFactory {
 	}
 
 	@Override
-	public DAO_JEE<Stage> getDAO_Stage() throws Exception {
+	public DAO_JEE<StageModel> getDAO_Stage() throws Exception {
 		try {
 			conn = Driver_DBOracle.getInstance();
 			return new DAO_Stage(conn);

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import PojoBean.SchoolMember;
+import Models.SchoolMemberModel;
 
 /**
  * Servlet implementation class ServletStagiairesDuProf
@@ -31,12 +31,12 @@ public class ServletStagiairesDuProf extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// recuperation du user par le contexte de l'application
 		  ServletContext sc = getServletContext();
-		  SchoolMember user = (SchoolMember) sc.getAttribute("UserMember");
+		  SchoolMemberModel user = (SchoolMemberModel) sc.getAttribute("UserMember");
 		  request.setAttribute("u",user);
 	  
 	    	try {				    	     
 	    	     // recuperation de la liste des étudiants du professeurs
-	    		SchoolMember sm = SchoolMember.listeDesEtudiant(user.getUsn());
+	    		SchoolMemberModel sm = SchoolMemberModel.listeDesEtudiant(user.getUsn());
 	    		// transmission de la liste à la jsp
 	    		request.setAttribute("sm", sm);
 	    		

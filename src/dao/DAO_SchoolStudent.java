@@ -11,16 +11,16 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import PojoBean.*;
+import Models.*;
 
-public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
+public class DAO_SchoolStudent extends DAO_JEE<SchoolStudentModel> {
 
 	public DAO_SchoolStudent(Connection conn) {
 		super(conn);
 	}
 
 	@Override
-	public boolean create(SchoolStudent obj) {
+	public boolean create(SchoolStudentModel obj) {
 		try {
 			// Récupération IDCoordinateur
 			String sql = "{? = call fct_retrieveiduser(?)}";
@@ -71,7 +71,7 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 		}
 	}
 	
-	public boolean createStudentUser(SchoolStudent obj) {
+	public boolean createStudentUser(SchoolStudentModel obj) {
 		try {
 			// Insertion de l'utilisateur
 			String sql = "{call pro_userinster(?, ?, ?, ?, ?, ?)}";
@@ -90,12 +90,12 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 	}
 
 	@Override
-	public boolean delete(SchoolStudent obj) {
+	public boolean delete(SchoolStudentModel obj) {
 		return true;
 	}
 
 	@Override
-	public boolean update(SchoolStudent obj) throws Exception {
+	public boolean update(SchoolStudentModel obj) throws Exception {
 		try {
 			
 			// Récupération de l'ID Utilisateur
@@ -149,7 +149,7 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 		}
 	}
 
-	public boolean chngPwd(SchoolMember obj) {
+	public boolean chngPwd(SchoolMemberModel obj) {
 		try {
 			String sql = "{call pro_userchngpwd(?, ?)}";
 			CallableStatement call = connect.prepareCall(sql);
@@ -162,10 +162,10 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 		}
 	}
 	
-	public SchoolStudent find(String usn) throws Exception {
+	public SchoolStudentModel find(String usn) throws Exception {
 		try {
-			SchoolMember coord;
-			SchoolMember superv;
+			SchoolMemberModel coord;
+			SchoolMemberModel superv;
 			String sql = "{? = call fct_studentexist(?)}";
 			CallableStatement call = connect.prepareCall(sql);
 			call.registerOutParameter(1, Types.INTEGER);
@@ -186,12 +186,12 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 					Statement stmt2 = connect.createStatement();
 					ResultSet res2 =  stmt2.executeQuery(sql2);
 					if (res2.next()) {				
-						coord = new SchoolMember(res2.getString("usn"), res2.getString("pwd"), 
+						coord = new SchoolMemberModel(res2.getString("usn"), res2.getString("pwd"), 
 							res2.getString("fname"), res2.getString("lname"), res2.getString("mail"), 
 							(res2.getInt("factive") == 1 ? true : false), res2.getString("tel"), 
 							(res2.getInt("fcoordinator") == 1 ? true : false));
 					} else {
-						coord = new SchoolMember();
+						coord = new SchoolMemberModel();
 					}
 					sql2 = "SELECT usn, pwd, fname, lname, mail, factive, tel, fcoordinator "
 						 + "FROM jee_user INNER JOIN jee_schoolmember USING (iduser) "
@@ -199,14 +199,14 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 					stmt2 = connect.createStatement();
 					res2 =  stmt2.executeQuery(sql2);
 					if (res2.next()) {
-						superv = new SchoolMember(res2.getString("usn"), res2.getString("pwd"), 
+						superv = new SchoolMemberModel(res2.getString("usn"), res2.getString("pwd"), 
 							res2.getString("fname"), res2.getString("lname"), res2.getString("mail"), 
 							(res2.getInt("factive") == 1 ? true : false), res2.getString("tel"), 
 							(res2.getInt("fcoordinator") == 1 ? true : false));
 					} else {
-						superv = new SchoolMember();
+						superv = new SchoolMemberModel();
 					}
-					SchoolStudent ss = new SchoolStudent(res.getString("usn"), res.getString("pwd"), 
+					SchoolStudentModel ss = new SchoolStudentModel(res.getString("usn"), res.getString("pwd"), 
 							res.getString("fname"), res.getString("lname"), res.getString("mail"), 
 							(res.getInt("factive") == 1 ? true : false), coord, superv, res.getString("NISS"),
 							res.getString("zipcode"), res.getString("city"), res.getString("street"),
@@ -224,9 +224,9 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 		}
 	}
 	
-	public ArrayList<SchoolStudent> findList(String usn) {
+	public ArrayList<SchoolStudentModel> findList(String usn) {
 		try {
-			ArrayList<SchoolStudent> list = new ArrayList<SchoolStudent>();
+			ArrayList<SchoolStudentModel> list = new ArrayList<SchoolStudentModel>();
 			String sql = "{? = call fct_retrieveiduser(?)}";
 			CallableStatement call = connect.prepareCall(sql);
 			call.registerOutParameter(1, Types.INTEGER);
@@ -239,7 +239,7 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 			Statement stmt = connect.createStatement();
 			ResultSet res =  stmt.executeQuery(sql);
 			while (res.next()) {
-				SchoolStudent ss = find(res.getString("usn"));
+				SchoolStudentModel ss = find(res.getString("usn"));
 				if (!list.contains(ss))
 					list.add(ss);
 			}
@@ -249,16 +249,16 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 		}
 	}
 	
-	public Set<SchoolStudent> findAllStudent() {
+	public Set<SchoolStudentModel> findAllStudent() {
 		try {
-			Set<SchoolStudent> list = new HashSet<>();
+			Set<SchoolStudentModel> list = new HashSet<>();
 			String sql = "SELECT usn, pwd, fname, lname, mail, factive, idcoord, idsuperv, niss, zipcode"
 					+ ", city, street, streetnb, streetbox, tel, sect, cat, estbl "
 					+ "FROM jee_user INNER JOIN jee_student USING (iduser) ";
 			Statement stmt = connect.createStatement();
 			ResultSet res =  stmt.executeQuery(sql);
 			while (res.next()) {
-				SchoolStudent ss = find(res.getString("usn"));
+				SchoolStudentModel ss = find(res.getString("usn"));
 				if (!list.contains(ss))
 					list.add(ss);
 			}
@@ -268,7 +268,7 @@ public class DAO_SchoolStudent extends DAO_JEE<SchoolStudent> {
 		}
 	}
 	
-	public boolean SchoolStudentExist(String usn) {
+	public boolean SchoolStudentExist(String usn, String pwd) {
 		try {
 			String sql = "{? = call fct_studentexist(?)}";
 			CallableStatement call = connect.prepareCall(sql);

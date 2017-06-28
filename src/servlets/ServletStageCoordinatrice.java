@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import PojoBean.SchoolMember;
-import PojoBean.SchoolStudent;
+import Models.SchoolMemberModel;
+import Models.SchoolStudentModel;
 
 /**
  * Servlet implementation class ServletStageCoordinatrice
@@ -34,8 +34,8 @@ public class ServletStageCoordinatrice extends HttpServlet {
 		/*Récupération de l'ensemble des etudiants*/
 		
 		 try {			
-			 SchoolMember sm = new SchoolMember();
-			 Set<SchoolStudent> lisOfStudent =  sm.listStudent();
+			 SchoolMemberModel sm = new SchoolMemberModel();
+			 Set<SchoolStudentModel> lisOfStudent =  sm.listStudent();
 			// Set<SchoolStudent> lisOfStudent   =  SchoolStudent.listOfALLStudent(); 
 			 //Set<SchoolStudent> lisOfStudent= sm.
 			

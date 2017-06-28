@@ -4,22 +4,23 @@ import java.sql.Connection;
 import java.sql.CallableStatement;
 import java.sql.Statement;
 import java.sql.Types;
+
+import Models.SchoolStudentModel;
+import Models.StageModel;
+import Models.StageHoursModel;
+
 import java.sql.Date;
 import java.sql.ResultSet;
 
-import PojoBean.SchoolStudent;
-import PojoBean.Stage;
-import PojoBean.StageHours;
 
-
-public class DAO_Stage extends DAO_JEE<Stage>{
+public class DAO_Stage extends DAO_JEE<StageModel>{
 
 	public DAO_Stage(Connection conn) {
 		super(conn);		
 	}
 
 	@Override
-	public boolean create(Stage obj) {
+	public boolean create(StageModel obj) {
 		try {
 			// R�cup�ration de l'ID de l'�tudiant
 			String sql = "{? = call fct_retrieveiduser(?)}";
@@ -58,12 +59,12 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 	}
 
 	@Override
-	public boolean delete(Stage obj) {
+	public boolean delete(StageModel obj) {
 		return true;
 	}
 
 	@Override
-	public boolean update(Stage obj) {
+	public boolean update(StageModel obj) {
 		try {
 			
 			// R�cup�ration de l'ID de l'�tudiant
@@ -113,7 +114,7 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 		}
 	}
 	
-	public Stage find(SchoolStudent stu, Date dateBeg, Date dateEnd) {
+	public StageModel find(SchoolStudentModel stu, Date dateBeg, Date dateEnd) {
 		try {
 			// R�cup�ration de l'ID de l'�tudiant
 			String sql = "{? = call fct_retrieveiduser(?)}";
@@ -128,7 +129,7 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 				+ "' AND dateend = '" + dateEnd + "'";
 			Statement stmt = connect.createStatement();
 			ResultSet res = stmt.executeQuery(sql);
-			Stage s = new Stage(stu, res.getString("entname"), res.getString("entspvname"), 
+			StageModel s = new StageModel(stu, res.getString("entname"), res.getString("entspvname"), 
 					res.getString("entspvmail"), res.getString("entspvtel"), res.getString("entspvfax"),
 					res.getString("entcountry"), res.getString("entstate"), res.getString("entzipcode"),
 					res.getString("entcity"), res.getString("entstreet"), res.getString("entstreetnb"),
@@ -140,7 +141,7 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 			stmt = connect.createStatement();
 			res = stmt.executeQuery(sql);
 			while (res.next()) {
-				StageHours sh = new StageHours(res.getString("nameday"), res.getString("hrbegam"),
+				StageHoursModel sh = new StageHoursModel(res.getString("nameday"), res.getString("hrbegam"),
 						res.getString("hrendam"), res.getString("hrbegpm"), res.getString("hrendpm"));
 				s.addStageHour(sh);
 			}
@@ -151,7 +152,7 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 		}
 	}
 	
-	public boolean insupdStageHours(Stage obj) throws Exception {
+	public boolean insupdStageHours(StageModel obj) throws Exception {
 		try {
 			// R�cup�ration de l'ID de l'�tudiant
 			String sql = "{? = call fct_retrieveiduser(?)}";
@@ -171,7 +172,7 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 			call.execute();
 			int idStage = call.getInt(1);
 			
-			for(StageHours sh : obj.getListStageHours()) {
+			for(StageHoursModel sh : obj.getListStageHours()) {
 				
 				// V�rification que le stageHours existe
 				sql = "{? = call fct_stagehoursexist(?, ?)}";
@@ -201,7 +202,7 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 	
 	
 	/***********Afficher le stage d'un �tudiant*****************************************/
-	public Stage findStudentStage(SchoolStudent stu) {
+	public StageModel findStudentStage(SchoolStudentModel stu) {
 		try {
 			// R�cup�ration de l'ID de l'�tudiant
 			String sql = "{? = call fct_retrieveiduser(?)}";
@@ -217,7 +218,7 @@ public class DAO_Stage extends DAO_JEE<Stage>{
 				Statement stmt = connect.createStatement();
 				ResultSet res = stmt.executeQuery(sql);
 				res.next();
-				Stage s = new Stage(stu, res.getString("entname"), res.getString("entspvname"), 
+				StageModel s = new StageModel(stu, res.getString("entname"), res.getString("entspvname"), 
 						res.getString("entspvmail"), res.getString("entspvtel"), res.getString("entspvfax"),
 						res.getString("entcountry"), res.getString("entstate"), res.getString("entzipcode"),
 						res.getString("entcity"), res.getString("entstreet"), res.getString("entstreetnb"),
