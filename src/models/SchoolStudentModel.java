@@ -3,6 +3,7 @@ package Models;
 
 import java.util.Set;
 
+import Beans.Stage;
 import DB.DB_SchoolStudent;
 
 public class SchoolStudentModel extends UserModel{
@@ -110,16 +111,15 @@ public class SchoolStudentModel extends UserModel{
 	public void setCategory(String value) { this.category = value; }
 	public void setEstablishment(String value) { this.establishment = value; }
 	
-	/***********************méthodes publiques
-	 * @throws Exception *****************************/
+	
 	public static boolean create(SchoolStudentModel obj) throws Exception{
 		if(obj.getSupervisor() != null && obj.getCoordinator() != null && !obj.getMail().isEmpty() &&  !obj.getTel().isEmpty() && !obj.getStreet().isEmpty() && !obj.getCity().isEmpty())
 			return DB_SchoolStudent.create(obj);
 		else
 			throw new Exception("vous avez déjà un stage ou veuillez remplir les champs vide");
 	}
-	/************** liste de tous les étudiants
-	 * @throws Exception *************************/
+	
+	
 	public static  Set<SchoolStudentModel> listOfALLStudent() throws Exception{
 		return DB_SchoolStudent.allStudent();
 	}
@@ -130,7 +130,7 @@ public class SchoolStudentModel extends UserModel{
 	}
 	
 	//appel  à la fonction afficher stage de l'tudiant
-	public  StageModel TrainingOfStudent(SchoolStudentModel ss) throws Exception{
+	public  Stage TrainingOfStudent(SchoolStudentModel ss) throws Exception{
 		return    stage.studentTraining(ss);
 	}
 	
