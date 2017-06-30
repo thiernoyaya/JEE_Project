@@ -11,6 +11,9 @@ import DAO.DAO_JEE;
 import DAO.DAO_SchoolMember;
 
 public class SchoolMemberModel extends UserModel {	
+	/**
+	 * Setting up logger
+	 */
 	protected Logger logger = Logger.getLogger(SchoolMemberModel.class);
 
 	/**
