@@ -48,7 +48,7 @@ public class Acceuille extends HttpServlet {
 				if(obj instanceof SchoolStudentModel ){
 					SchoolStudentModel ss = (SchoolStudentModel)obj;
 					ServletContext scS = getServletContext();
-					scS.setAttribute("UserStuent",  ss );
+					scS.setAttribute("UserStudent",  ss );
 					obj = null;
 					//pour l'étudiant
 					this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/AcceuilleEtudiant.jsp").forward(request, response);		
@@ -69,14 +69,13 @@ public class Acceuille extends HttpServlet {
 					}					
 			}
 			else{
-				throw new Exception("The obj is not initialized");
+				throw new Exception("The user is not initialized");
 			}
 		}
 		catch(Exception ex){
 			msgError = ex.getMessage();
 			error = true;
 		}
-		//lorqu'on rencontre une erreur lors du login on signale le problème à l'utilisateur
 		if(error){
 			request.setAttribute("error", msgError);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/login.jsp").forward(request, response);

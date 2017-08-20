@@ -12,22 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import Models.SchoolMemberModel;
 import Models.SchoolStudentModel;
 
-/**
- * Servlet implementation class CreateStage
- */
+
 @WebServlet("/CreateStage")
 public class CreateStage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+        
     public CreateStage() {
-        super();
-       
+    	super();
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -37,37 +32,39 @@ public class CreateStage extends HttpServlet {
 		String msgError="";
 		
 		try {
+			
 			// recuperation du user par le contexte de l'application
-			 ServletContext sc = getServletContext();
-			 SchoolStudentModel  user = (SchoolStudentModel) sc.getAttribute("UserStuent");		 
+			ServletContext sc = getServletContext();
+			SchoolStudentModel  user = (SchoolStudentModel) sc.getAttribute("UserStuent");		 
 			
-			  // recupperation des paramètres 
-			 String email  = request.getParameter("email");
-			 String tel  = request.getParameter("tel");
-			 String rue  = request.getParameter("rue");
-			 String nrue  = request.getParameter("nrue");
-			String ville  = request.getParameter("ville");
-			
+			// recupperation des paramètres 
+			String email  = request.getParameter("email");
+			String tel  = request.getParameter("tel");
+			String rue  = request.getParameter("rue");
+			String nrue  = request.getParameter("nrue");
+			String ville  = request.getParameter("ville");			
 			String spv = request.getParameter("professeur"); 
 			String coord  = request.getParameter("coordinatrice");	
 			
 			request.setAttribute("spv", coord);
 			
-			SchoolMemberModel smspv = SchoolMemberModel.find(spv);
-			SchoolMemberModel smCord = SchoolMemberModel.find(coord);
+			SchoolMemberModel memberModel = new SchoolMemberModel();
 			
+			SchoolMemberModel smspv = memberModel.findMember(spv);
+			SchoolMemberModel smCord = memberModel.findMember(coord);			
 			
 			//à traver nos setters on place des éléments dans notre objet
-			  user.setMail(email);
-			  user.setTel(tel);
-			  user.setStreet(rue);
-			  user.setStreetNB(nrue);
-			  user.setCity(ville);
-			  user.setCoordinator(smCord);
-			  user.setSupervisor(smspv);
-			  user.setTel(tel);
+			user.setMail(email);
+			user.setTel(tel);
+			user.setStreet(rue);
+			user.setStreetNB(nrue);
+			user.setCity(ville);
+			user.setCoordinator(smCord);
+			user.setSupervisor(smspv);
+			user.setTel(tel);
 	         
-			 SchoolStudentModel.create(user);	    
+			SchoolStudentModel studentModel =  new SchoolStudentModel();
+			studentModel.createStage(user);	    
 
 			this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/createStage.jsp").forward(request, response);
 			

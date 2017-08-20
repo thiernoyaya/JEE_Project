@@ -5,6 +5,7 @@ import java.sql.CallableStatement;
 import java.sql.Statement;
 import java.sql.Types;
 
+import Beans.Stage;
 import Models.SchoolStudentModel;
 import Models.StageModel;
 import Models.StageHoursModel;
@@ -202,7 +203,8 @@ public class DAO_Stage extends DAO_JEE<StageModel>{
 	
 	
 	/***********Afficher le stage d'un �tudiant*****************************************/
-	public StageModel findStudentStage(SchoolStudentModel stu) {
+	public Stage findStudentStage(SchoolStudentModel stu) {
+		Stage stage = new Stage(); 
 		try {
 			// R�cup�ration de l'ID de l'�tudiant
 			String sql = "{? = call fct_retrieveiduser(?)}";
@@ -218,13 +220,30 @@ public class DAO_Stage extends DAO_JEE<StageModel>{
 				Statement stmt = connect.createStatement();
 				ResultSet res = stmt.executeQuery(sql);
 				res.next();
-				StageModel s = new StageModel(stu, res.getString("entname"), res.getString("entspvname"), 
+				
+				stage.setStudent(stu);
+				stage.setEntName(res.getString("entname"));
+				stage.setEntSpvName(res.getString("entspvname"));
+				stage.setEntSpvMail(res.getString("entspvmail"));
+				stage.setEntSpvTel(res.getString("entspvtel"));
+				stage.setEntSpvFax(res.getString("entspvfax"));
+				stage.setEntCountry(res.getString("entcountry"));
+				stage.setEntState(res.getString("entstate"));
+				stage.setEntZipCode(res.getString("entzipcode"));
+				stage.setEntCity(res.getString("entcity"));
+				stage.setEntStreet(res.getString("entstreet"));
+				stage.setEntStreetNB(res.getString("entstreetnb"));
+				stage.setEntStreetBox(res.getString("entstreetbox"));
+				stage.setDateBegin(res.getDate("datebeg"));
+				stage.setDateEnd(res.getDate("dateend"));
+				stage.setTfeTheme(res.getString("tfetheme"));
+				/*StageModel s = new StageModel(stu, res.getString("entname"), res.getString("entspvname"), 
 						res.getString("entspvmail"), res.getString("entspvtel"), res.getString("entspvfax"),
 						res.getString("entcountry"), res.getString("entstate"), res.getString("entzipcode"),
 						res.getString("entcity"), res.getString("entstreet"), res.getString("entstreetnb"),
 						res.getString("entstreetbox"), res.getDate("datebeg"), res.getDate("dateend"),
-						res.getString("tfetheme"));
-				return s;
+						res.getString("tfetheme"));*/
+				return stage;
 			}
 			else {
 				throw new Exception(String.valueOf(idStudent));

@@ -148,7 +148,6 @@ public class DAO_SchoolMember extends DAO_JEE<SchoolMemberModel>{
 	public SchoolMemberModel findList(String usn) throws Exception {
 		SchoolMemberModel sm = find(usn);
 		try {
-			//ArrayList<SchoolStudent> list = new ArrayList<SchoolStudent>();
 			String sql = "{? = call fct_retrieveiduser(?)}";
 			CallableStatement call = connect.prepareCall(sql);
 			call.registerOutParameter(1, Types.INTEGER);
@@ -163,10 +162,7 @@ public class DAO_SchoolMember extends DAO_JEE<SchoolMemberModel>{
 			
 			DAO_SchoolStudent studentDAO = new DAO_SchoolStudent(this.connect);
 			while (res.next()) {
-				//SchoolStudent ss = find(res.getString("usn"));
 				sm.addStudent(studentDAO.find(res.getString("usn")));
-				/*if (!list.contains(ss))
-					list.add(ss);*/
 			}
 			return sm;
 		} catch (Exception ex) {

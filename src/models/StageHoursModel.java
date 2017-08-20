@@ -2,7 +2,6 @@ package Models;
 
 public class StageHoursModel {
 	
-	/*************Membres d'instanciation******************************/
 	private String nameDay;
 	private String heurBeginAm;
 	private String heureEndAm;

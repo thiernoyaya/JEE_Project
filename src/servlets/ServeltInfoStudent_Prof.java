@@ -26,7 +26,6 @@ public class ServeltInfoStudent_Prof extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -35,16 +34,19 @@ public class ServeltInfoStudent_Prof extends HttpServlet {
 		
 		try {
 			// pour les superviseur
-			Set<SchoolMemberModel> listOfSpv = SchoolMemberModel.listOfSchoolMember(true);
-			request.setAttribute("listSpv", listOfSpv);
+			SchoolMemberModel smSpv = new SchoolMemberModel();
+			
+			Set<SchoolMemberModel> listOfSpvModel = smSpv.listOfSchoolMember(true);
+			request.setAttribute("listSpv", listOfSpvModel);
 			
 			//pour la coordinatrice
-			Set<SchoolMemberModel> listOfCoord = SchoolMemberModel.listOfSchoolMember(false);
+			SchoolMemberModel smCoordiantriece = new SchoolMemberModel();
+
+			Set<SchoolMemberModel> listOfCoord = smCoordiantriece.listOfSchoolMember(false);
 			request.setAttribute("listCoord", listOfCoord);
 			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/VIEW/InfoStudent&ProfSuperviseur.jsp").forward(request, response);			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

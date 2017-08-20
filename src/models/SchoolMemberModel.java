@@ -251,8 +251,7 @@ public class SchoolMemberModel extends UserModel {
 			DAO_JEE<SchoolMemberModel> MemberDAO = adf.getDAO_SchoolMember();
 			return ((DAO_SchoolMember) MemberDAO).find(usn);
 		
-		} catch(Exception ex) 
-		{
+		} catch(Exception ex) {
 			throw ex;
 		}
 	}
