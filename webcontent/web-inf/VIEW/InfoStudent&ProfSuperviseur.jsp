@@ -47,7 +47,7 @@
 						</option>
 					</c:forEach>
 				</select> <span class="erreur"> <c:out value="${error}" />
-				</span> <input id="btnValider" type="submit" value="Valider" onclick="" />
+				</span> <input id="btnValider" type="submit" value="Suivant" onclick="" />
 			</fieldset>
 		</form>
 	</div>

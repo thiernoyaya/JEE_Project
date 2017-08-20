@@ -28,22 +28,22 @@
 				</td>
 			</tr>
 			<tr>
-				<td>nom Superviseur : <c:out
-						value="${stage.getEntSupervisorName()}" />
+				<td>Nom Superviseur : <c:out
+						value="${stage.getEntSpvName()}" />
 				</td>
 			</tr>
 			<tr>
 				<td>Email Superviseur : <c:out
-						value="${stage.getEntSupervisorMail()}" />
+						value="${stage.getEntSpvMail()}" />
 				</td>
 			</tr>
 			<tr>
 				<td>Tél Superviseur : <c:out
-						value="${stage.getEntSupervisorTel()}" />
+						value="${stage.getEntSpvTel()}" />
 				</td>
 			</tr>
 			<tr>
-				<td>Thème du TFE : <c:out value="${stage.getTFETheme()}" />
+				<td>Thème du TFE : <c:out value="${stage.getTfeTheme()}" />
 				</td>
 			</tr>
 

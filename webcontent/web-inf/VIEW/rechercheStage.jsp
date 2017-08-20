@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="Entreprise">
-		<h2>voici quelles que entreprise où vous pourriez solliciter un
+		<h2>voici quelques entreprise où vous pourriez solliciter un
 			stage</h2>
 		<table>
 			<tr>
